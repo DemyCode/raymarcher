@@ -13,7 +13,7 @@ double SmoothUnion::smoothmin(double a, double b)
 {
     double k = 2.5;
     double h = std::max(k - std::abs(a - b), 0.0) / k;
-    return std::min(a, b) - h * h * h * k * ( 1.0 / 6.0);
+    return std::min(a, b) - h * h * h * k * (1.0 / 6.0);
 }
 
 double SmoothUnion::distance(Vector3 point) {
@@ -23,5 +23,5 @@ double SmoothUnion::distance(Vector3 point) {
     return std::accumulate(distances.begin() + 1,
                            distances.end(),
                            distances.front(),
-                           &SmoothUnion::smoothmin);
+                           SmoothUnion::smoothmin);
 }
