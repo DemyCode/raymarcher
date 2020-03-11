@@ -1,4 +1,0 @@
-teapot - 241 sec
-teapot parrallel width - 57 sec
-teapot parrallel height - 54 sec
-teapot parrallel witdth + height - 53 sec
