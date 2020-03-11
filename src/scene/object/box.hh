@@ -10,6 +10,7 @@
 
 class Box : public Object {
     Box();
+    virtual double distance(Vector3 point) override;
 };
 
 
