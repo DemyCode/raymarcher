@@ -10,20 +10,24 @@
 #include <scene/object/object.hh>
 #include <scene/light/pointlight.hh>
 #include <utils/image.hh>
-#include <utils/parser/parser.hh>
-#include <scene/object/triangle.hh>
-#include <scene/object/plane.hh>
 #include <scene/texture/uniformtexture.hh>
-#include <scene/object/sphere.hh>
+#include <scene/object/primitives/sphere.hh>
 #include <chrono>
-
+#include <scene/object/csg/union.hh>
+#include <scene/object/csg/intersection.hh>
 
 
 int main()
 {
     auto start = std::chrono::high_resolution_clock::now();
     auto *shinyred = new UniformTexture(0.2, 1, ColorRGB("red"), 1);
-    Sphere sphere = Sphere(Vector3(10, 10, 0), 4, shinyred);
+    Sphere sphere1 = Sphere(Vector3(50, 10, 5), 10, shinyred);
+    Sphere sphere2 = Sphere(Vector3(50, 10, -5), 10, shinyred);
+    std::vector<Object*> objects = std::vector<Object*>();
+    objects.push_back(&sphere1);
+    objects.push_back(&sphere2);
+    Union anUnion = Union(objects);
+    Intersection intersection = Intersection(objects);
 
     PointLight light2 = PointLight(Vector3(-500, 100, -500), 1, ColorRGB("white"));
     std::vector<PointLight*> lights = std::vector<PointLight*>();
@@ -45,7 +49,7 @@ int main()
     double halfscreensizex = std::tan((camera.getAnglex() / 2.0) * (M_PI / 180)) * zmin;
     double halfscreensizey = std::tan((camera.getAngley() / 2.0) * (M_PI / 180)) * zmin;
 
-    Scene scene = Scene(&sphere, lights, camera);
+    Scene scene = Scene(&intersection, lights, camera);
 
     int width = 1920;
     int height = 1080;

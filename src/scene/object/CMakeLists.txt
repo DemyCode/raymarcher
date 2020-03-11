@@ -1,5 +1,5 @@
  # MAKE
 
- set(object_src object.cc sphere.cc plane.cc triangle.cc box.cc)
+ set(object_src object.cc primitives/box.cc primitives/sphere.cc csg/union.cc csg/intersection.cc)
 
  add_library(object ${object_src})

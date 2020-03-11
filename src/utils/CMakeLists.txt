@@ -1,7 +1,5 @@
 #MAKE
 
-add_subdirectory(parser)
-
 set(utils_src
         vector3.cc vertex.cc
         color.cc

@@ -19,7 +19,7 @@ add_subdirectory(src)
 
 add_executable(raymarcher src/main.cc)
 
-set(libraries scene parser texture object light utils)
+set(libraries scene texture object light utils)
 find_package(OpenMP)
 if(OpenMP_CXX_FOUND)
     set(libraries PUBLIC OpenMP::OpenMP_CXX ${libraries})

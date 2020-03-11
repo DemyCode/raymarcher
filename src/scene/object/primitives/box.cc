@@ -4,10 +4,6 @@
 
 #include "box.hh"
 
-Box::Box() {
-
-}
-
 double Box::distance(Vector3 point) {
     //TODO
     (void) point;

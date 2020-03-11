@@ -9,8 +9,8 @@
 #include <scene/object/object.hh>
 
 class Box : public Object {
-    Box();
-    virtual double distance(Vector3 point) override;
+    Box() = default;
+    double distance(Vector3 point) override;
 };
 
 
