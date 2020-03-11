@@ -8,6 +8,7 @@
 
 #include <scene/object/object.hh>
 #include <vector>
+#include <numeric>
 
 class Intersection : public Object {
 public:
