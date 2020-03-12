@@ -12,7 +12,7 @@
 
 class SmoothUnion : public Object{
 public:
-    SmoothUnion(std::vector<Object*> objects);
+    SmoothUnion(std::vector<Object*> objects, double smoothfactor);
     double distance(Vector3 point) override;
 private:
     std::vector<Object*> objects_;

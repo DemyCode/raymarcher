@@ -22,9 +22,9 @@ int main()
 {
     auto start = std::chrono::high_resolution_clock::now();
     auto *shinyred = new UniformTexture(0.2, 1, ColorRGB("red"), 1);
-    Sphere sphere1 = Sphere(Vector3(50, 10, 10), 10, shinyred);
-    Sphere sphere2 = Sphere(Vector3(50, 10, 0), 10, shinyred);
-    Sphere sphere3 = Sphere(Vector3(50, 10, -10), 10, shinyred);
+    Sphere sphere1 = Sphere(Vector3(50, 0, -5), 10, shinyred);
+    Sphere sphere2 = Sphere(Vector3(50, 0, 5), 10, shinyred);
+    Sphere sphere3 = Sphere(Vector3(50, 10, 0), 10, shinyred);
     std::vector<Object*> objects = std::vector<Object*>();
     objects.push_back(&sphere1);
     objects.push_back(&sphere2);
@@ -53,7 +53,7 @@ int main()
     double halfscreensizex = std::tan((camera.getAnglex() / 2.0) * (M_PI / 180)) * zmin;
     double halfscreensizey = std::tan((camera.getAngley() / 2.0) * (M_PI / 180)) * zmin;
 
-    Scene scene = Scene(&smoothUnion, lights, camera);
+    Scene scene = Scene(&intersection, lights, camera);
 
     int width = 1920;
     int height = 1080;

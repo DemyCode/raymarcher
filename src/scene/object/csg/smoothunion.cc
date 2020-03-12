@@ -4,9 +4,10 @@
 
 #include "smoothunion.hh"
 
-SmoothUnion::SmoothUnion(std::vector<Object*> objects)
+SmoothUnion::SmoothUnion(std::vector<Object*> objects, double smoothfactor)
 {
     this->objects_ = objects;
+    this->k_ = smoothfactor;
 }
 
 double SmoothUnion::smoothmin(double a, double b)
