@@ -22,16 +22,16 @@ int main()
 {
     auto start = std::chrono::high_resolution_clock::now();
     auto *shinyred = new UniformTexture(0.2, 1, ColorRGB("red"), 1);
-    Sphere sphere1 = Sphere(Vector3(50, 10, 10), 10, shinyred);
-    Sphere sphere2 = Sphere(Vector3(50, 10, 0), 10, shinyred);
-    Sphere sphere3 = Sphere(Vector3(50, 10, -10), 10, shinyred);
+    Sphere sphere1 = Sphere(Vector3(50, 10, 5), 5, shinyred);
+    Sphere sphere2 = Sphere(Vector3(50, 10, 0), 5, shinyred);
+    Sphere sphere3 = Sphere(Vector3(50, 10, -5), 5, shinyred);
     std::vector<Object*> objects = std::vector<Object*>();
     objects.push_back(&sphere1);
     objects.push_back(&sphere2);
     objects.push_back(&sphere3);
     Union anUnion = Union(objects);
     Intersection intersection = Intersection(objects);
-    SmoothUnion smoothUnion = SmoothUnion(objects);
+    SmoothUnion smoothUnion = SmoothUnion(objects, 1.0);
 
     PointLight light2 = PointLight(Vector3(-500, 100, -500), 1, ColorRGB("white"));
     std::vector<PointLight*> lights = std::vector<PointLight*>();

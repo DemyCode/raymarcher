@@ -23,7 +23,7 @@ double SmoothUnion::distance(Vector3 point) {
         distances.push_back(object->distance(point));
 
     // Can be change or even passed as parameter
-    double k = 2.5;
+    double k = this->k_;
 
     std::function<double(double, double)> accumulator = [k](double a, double b) -> double
     {
