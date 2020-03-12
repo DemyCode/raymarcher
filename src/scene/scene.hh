@@ -25,6 +25,8 @@ private:
     Object* object_;
     std::vector<PointLight*> lights_;
     Camera camera_;
+
+    Vector3 normal(Vector3 p, double epsilon);
 };
 
 

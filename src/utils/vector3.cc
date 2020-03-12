@@ -43,6 +43,18 @@ double Vector3::getZ() {
     return z_;
 }
 
+Vector3 Vector3::setX(double x) {
+    return Vector3(x, this->y_, this->z_);
+}
+
+Vector3 Vector3::setY(double y) {
+    return Vector3(this->x_, y, this->z_);
+}
+
+Vector3 Vector3::setZ(double z) {
+    return Vector3(this->x_, this->y_, z);
+}
+
 double Vector3::dot(const Vector3 &v) const {
     return this->x_ * v.x_ + this->y_ * v.y_ + this->z_ * v.z_;
 }
