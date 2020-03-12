@@ -39,6 +39,12 @@ ColorRGB Scene::castRay(Ray ray, int bounces) {
                         1 *
                         dotproduct *
                         light->getIntensity());
+            Vector3 reflectdir = ray.getDirection() - normaldir * ray.getDirection().dot(normaldir) * 2;
+            double dotproduct2 = std::pow(reflectdir.dot(lightdir), 1.0);
+            newColor = newColor +
+                       light->getColorRgb() * 0.5 *
+                       light->getIntensity() *
+                       dotproduct2;
         }
     }
     return newColor;
