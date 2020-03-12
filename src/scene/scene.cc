@@ -19,23 +19,24 @@ Vector3 Scene::normal(Vector3 p, double epsilon)
 }
 
 ColorRGB Scene::castRay(Ray ray, int bounces) {
+    ColorRGB newColor = ColorRGB(0, 0, 0);
     if (bounces == 0)
-        return ColorRGB(0, 0, 0);
-    Vector3 currentpoint = ray.getPoint();
+        return newColor;
+    double epsilon = 0.001;
+    Vector3 currentpoint = ray.getPoint() + ray.getDirection() * epsilon;
     double distance = std::numeric_limits<double>::infinity();
-    for (int i = 0; i < 64 && distance > 0.001; i++)
+    for (int i = 0; i < 200 && distance > epsilon; i++)
     {
         distance = this->object_->distance(currentpoint);
         currentpoint = currentpoint + ray.getDirection() * distance;
     }
-    ColorRGB newColor = ColorRGB(0, 0, 0);
-    if (distance <= 0.001) {
+    if (distance <= epsilon) {
         for (auto &light : this->lights_) {
             Vector3 lightdir = (light->getPos() - currentpoint).normalize();
             Vector3 normaldir = this->normal(currentpoint, 0.001).normalize();
             double dotproduct = normaldir.dot(lightdir);
             newColor = newColor +
-                       (ColorRGB(255, 255, 255) *
+                       (ColorRGB(0, 0, 255) *
                         1 *
                         dotproduct *
                         light->getIntensity());
@@ -45,6 +46,8 @@ ColorRGB Scene::castRay(Ray ray, int bounces) {
                        light->getColorRgb() * 0.5 *
                        light->getIntensity() *
                        dotproduct2;
+            newColor = newColor +
+                       castRay(Ray(currentpoint, reflectdir), bounces - 1) * 0.5;
         }
     }
     return newColor;

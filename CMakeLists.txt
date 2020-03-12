@@ -10,7 +10,7 @@ set(BUILD_SHARED_LIBS ON)
 # if (BUILD_DEBUG)
 #    add_compile_options(-Wall -Wextra -pedantic  -std=c++17 -g3 -D RAY_DEBUG -fno-inline -O0)
 # else()
-     add_compile_options(-fopenmp -Wall -Wextra -pedantic -Werror -std=c++17 -O3)
+     add_compile_options(-fopenmp -Wall -Wextra -pedantic -std=c++17 -Ofast)
 # endif ()
 
 include_directories(src)
