@@ -18,7 +18,7 @@ private:
     std::vector<Object*> objects_;
     double k_;
 
-    static double smoothmin(double a, double b);
+    static double smoothmin(double a, double b, double k);
 };
 
 
