@@ -27,6 +27,7 @@ private:
     Camera camera_;
 
     Vector3 normal(Vector3 p, double epsilon);
+    std::optional<Vector3> trace(Ray ray, double maxdistance);
 };
 
 

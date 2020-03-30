@@ -23,24 +23,26 @@ int main()
 {
     auto start = std::chrono::high_resolution_clock::now();
     auto *shinyred = new UniformTexture(0.2, 1, ColorRGB("red"), 1);
-    Sphere sphere1 = Sphere(Vector3(50, 10, 5), 5, shinyred);
-    Sphere sphere2 = Sphere(Vector3(50, 10, 0), 5, shinyred);
-    Sphere sphere3 = Sphere(Vector3(50, 10, -5), 5, shinyred);
-    Sphere sphere4 = Sphere(Vector3(500, 10, -5), 200, shinyred);
+    Sphere sphere1 = Sphere(Vector3(50, 10, 0), 5, shinyred);
+//    Sphere sphere2 = Sphere(Vector3(50, 10, 0), 5, shinyred);
+//    Sphere sphere3 = Sphere(Vector3(50, 10, -5), 5, shinyred);
+//    Sphere sphere4 = Sphere(Vector3(500, 10, -5), 200, shinyred);
     Plane plane = Plane(Vector3(0, 0, 0), Vector3(0, 1, 0));
     std::vector<Object*> objects = std::vector<Object*>();
-//    objects.push_back(&sphere1);
+    objects.push_back(&sphere1);
 //    objects.push_back(&sphere2);
 //    objects.push_back(&sphere3);
 //    objects.push_back(&sphere4);
     objects.push_back(&plane);
     Union anUnion = Union(objects);
     Intersection intersection = Intersection(objects);
-    SmoothUnion smoothUnion = SmoothUnion(objects, 1.0);
+    //SmoothUnion smoothUnion = SmoothUnion(objects, 1.0);
 
-    PointLight light2 = PointLight(Vector3(0, 20, -20), 1, ColorRGB("white"));
+    PointLight light1 = PointLight(Vector3(100, 100, 100), 1, ColorRGB("white"));
+    //PointLight light2 = PointLight(Vector3(50, 20, 5), 1, ColorRGB("white"));
     std::vector<PointLight*> lights = std::vector<PointLight*>();
-    lights.push_back(&light2);
+    lights.push_back(&light1);
+    //lights.push_back(&light2);
 
     double anglex = 90;
     double angley = 60;
@@ -58,15 +60,15 @@ int main()
     double halfscreensizex = std::tan((camera.getAnglex() / 2.0) * (M_PI / 180)) * zmin;
     double halfscreensizey = std::tan((camera.getAngley() / 2.0) * (M_PI / 180)) * zmin;
 
-    Scene scene = Scene(&smoothUnion, lights, camera);
+    Scene scene = Scene(&anUnion, lights, camera);
 
-    int width = 1920;
-    int height = 1080;
+    int width = 720;
+    int height = 480;
 
     Image image = Image(width, height);
     for (int i = 0; i < height; i++)
     {
-#pragma omp parallel for
+        //#pragma omp parallel for
         for (int j = 0; j < width; j++)
         {
             Vector3 origin = camera.getLocation();

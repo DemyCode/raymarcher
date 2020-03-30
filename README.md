@@ -1,3 +1,3 @@
-# raytracer
+# RayMarcher
 
-RayTracer for IMAGE lessons
+RayMarcher for IMAGE lessons
