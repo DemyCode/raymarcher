@@ -22,8 +22,7 @@ std::optional<Vector3> Scene::trace(Ray ray, double maxdistance)
 {
     double epsilondisplacement = 0.1;
     double epsilonbreakcondition = 0.01;
-    ray.setPoint(ray.getPoint() + ray.getDirection() * epsilondisplacement);
-    Vector3 currentpoint = ray.getPoint();
+    Vector3 currentpoint = ray.getPoint() + ray.getDirection() * epsilondisplacement;
     for (size_t i = 0; i < 200; i++)
     {
         double distancetonearest = this->object_->distance(currentpoint);
@@ -55,7 +54,7 @@ ColorRGB Scene::castRay(Ray ray, int bounces) {
                 Vector3 normaldir = this->normal(pointresult, 0.01).normalize();
                 double dotproduct = normaldir.dot(lightdir);
                 newColor = newColor +
-                           (ColorRGB("white") * // objres->getTextureColor(pointresult)
+                           (ColorRGB("red") * // objres->getTextureColor(pointresult)
                             1.0 * // objres->getTextureKd(pointresult)
                             dotproduct *
                             light->getIntensity());
